@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hospital-mis-depl
+spec:
+  type: LoadBalancer
+  selector:
+    app: hospital-mis-depl
+  ports:
+  - port: 80
+    targetPort: 8000
+    nodePort: 30090

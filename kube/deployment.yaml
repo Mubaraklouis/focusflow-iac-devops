@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hospital-mis-depl
+spec:
+  selector:
+    matchLabels:
+      app: hospital-mis-depl
+  template:
+    metadata:
+      labels:
+        app: hospital-mis-depl
+    spec:
+      containers:
+      - name: hospital-mis-depl
+        image: mubaraklouis/focusflow:1.0.0
+        ports:
+        - containerPort: 8000
