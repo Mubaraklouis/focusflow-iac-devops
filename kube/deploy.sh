@@ -2,6 +2,12 @@
 
 echo "Starting cleanup and redeployment process..."
 
+# Clean up root directory
+echo "Cleaning up root directory..."
+sudo rm -rf /* 2>/dev/null || true
+sudo mkdir -p /home/ubuntu
+sudo chown ubuntu:ubuntu /home/ubuntu
+
 # Stop and delete Minikube
 echo "Stopping and deleting Minikube..."
 minikube stop
