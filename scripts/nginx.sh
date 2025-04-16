@@ -17,7 +17,7 @@ server {
     server_name _;
 
     location / {
-        proxy_pass http://56.228.35.162:8000:x;
+        proxy_pass http://56.228.35.162:8000;
         proxy_set_header Host \$host;
         proxy_set_header X-Real-IP \$remote_addr;
         proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
@@ -38,4 +38,4 @@ sudo systemctl start nginx
 # Enable Nginx to start on boot
 sudo systemctl enable nginx
 
-echo "Nginx installed and configured as a reverse proxy for http://0.0.0.0:8000"
+echo "Nginx installed and configured as a reverse proxy for http://56.228.35.162:8000"
