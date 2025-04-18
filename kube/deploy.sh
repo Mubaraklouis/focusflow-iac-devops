@@ -35,7 +35,7 @@ sudo docker rm focusflow-app || true
 # Pull and run the FocusFlow container
 echo "Pulling and running FocusFlow container..."
 sudo docker pull mubaraklouis/focusflow:1.0.0
-sudo docker run -d -p 8000:8000 --name focusflow-app mubaraklouis/focusflow:1.1.0
+sudo docker run -d -p 8000:8000 --name focusflow-app mubaraklouis/focusflow:1.1.1
 
 echo "Docker installation and container deployment completed successfully!"
 echo "The FocusFlow container is now running on port 8000"
