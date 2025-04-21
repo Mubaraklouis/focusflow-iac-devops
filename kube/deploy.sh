@@ -32,6 +32,19 @@ echo "Cleaning up existing containers..."
 sudo docker stop focusflow-app || true
 sudo docker rm focusflow-app || true
 
+# Clean up all Docker images
+echo "Removing all Docker images..."
+# Remove all containers (running or stopped)
+sudo docker rm -f $(sudo docker ps -aq) || echo "No containers to remove"
+
+# Remove all images related to focusflow
+echo "Removing all focusflow images..."
+sudo docker rmi -f $(sudo docker images | grep focusflow | awk '{print $3}') || echo "No focusflow images to remove"
+
+# Remove all dangling images (untagged images)
+echo "Removing all dangling images..."
+sudo docker image prune -f
+
 # Pull the FocusFlow container
 echo "Pulling FocusFlow container..."
 sudo docker pull mubaraklouis/focusflow-cms-service:0.0.0
