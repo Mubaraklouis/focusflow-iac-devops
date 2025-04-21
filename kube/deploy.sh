@@ -75,7 +75,7 @@ else
     -e "NODE_ENV=production" \
     -e "DEBUG=true" \
     --restart unless-stopped \
-    -d mubaraklouis/focusflow-cms-service:0.0.0
+    -d mubaraklouis/focusflow-cms-service:0.0.1
 
   # Check if container is running
   echo "Checking container status..."
