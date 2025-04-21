@@ -53,27 +53,55 @@ sudo docker image prune -f
 echo "Pulling FocusFlow container..."
 sudo docker pull mubaraklouis/focusflow-cms-service:0.0.0
 
-# Run with interactive console to see any issues
-echo "Running FocusFlow container with extended options..."
-sudo docker run --name focusflow-app \
-  -p 8000:8000 \
-  -e "PORT=8000" \
-  --restart unless-stopped \
-  -d mubaraklouis/focusflow-cms-service:0.0.0
+# Ask user if they want to run in debug mode
+echo ""
+echo "Do you want to run the container in debug mode? (y/n)"
+read -r debug_mode
 
-# Check if container is running
-echo "Checking container status..."
-sudo docker ps
-echo "If no container is listed above, checking for failed containers..."
-sudo docker ps -a
+if [ "$debug_mode" = "y" ]; then
+  # Run container with interactive shell for debugging
+  echo "Starting container in debug mode with interactive shell..."
+  sudo docker run --name focusflow-app \
+    -p 8000:8000 \
+    -e "PORT=8000" \
+    -e "DEBUG=true" \
+    -it mubaraklouis/focusflow-cms-service:0.0.0 /bin/sh
+else
+  # Run with standard configuration but with more environment variables
+  echo "Running FocusFlow container with standard configuration..."
+  sudo docker run --name focusflow-app \
+    -p 8000:8000 \
+    -e "PORT=8000" \
+    -e "NODE_ENV=production" \
+    -e "DEBUG=true" \
+    --restart unless-stopped \
+    -d mubaraklouis/focusflow-cms-service:0.0.0
 
-# Check container logs if it exists
-echo "Checking container logs..."
-sudo docker logs focusflow-app || echo "No logs available"
+  # Check if container is running
+  echo "Checking container status..."
+  sudo docker ps
+  echo "If no container is listed above or it's restarting, checking logs..."
+  sudo docker ps -a
 
-echo "Docker installation and container deployment completed successfully!"
-echo "The FocusFlow container should be running on port 8000"
-echo "If you don't see the container in 'docker ps', check the logs above for errors"
+  # Show extended logs for debugging
+  echo ""
+  echo "Extended container logs (last 50 lines):"
+  sudo docker logs focusflow-app --tail 50
+
+  # Additional debugging information
+  echo ""
+  echo "Container inspection (might reveal configuration issues):"
+  sudo docker inspect focusflow-app | grep -A 10 "State"
+fi
+
+echo ""
+echo "Docker installation and container deployment completed!"
+echo ""
+echo "Troubleshooting tips if container keeps restarting:"
+echo "1. Check logs for specific error messages: sudo docker logs focusflow-app"
+echo "2. Try running with interactive shell: sudo docker run -it --rm mubaraklouis/focusflow-cms-service:0.0.0 /bin/sh"
+echo "3. Check if required environment variables are set"
+echo "4. Verify the container's entrypoint script is executable"
 echo ""
 echo "============================================================"
 echo "IMPORTANT: To use Docker without sudo, log out and log back in"
