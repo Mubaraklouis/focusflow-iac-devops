@@ -24,8 +24,12 @@ echo \
 sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
-# Add current user to docker group
+# Fix Docker permissions
+echo "Setting up Docker permissions..."
+sudo groupadd -f docker
 sudo usermod -aG docker $USER
+sudo chmod 666 /var/run/docker.sock
+echo "Note: For permanent permission fix, please log out and log back in after this script completes"
 
 # Clean up existing containers
 echo "Cleaning up existing containers..."
@@ -70,3 +74,9 @@ sudo docker logs focusflow-app || echo "No logs available"
 echo "Docker installation and container deployment completed successfully!"
 echo "The FocusFlow container should be running on port 8000"
 echo "If you don't see the container in 'docker ps', check the logs above for errors"
+echo ""
+echo "============================================================"
+echo "IMPORTANT: To use Docker without sudo, log out and log back in"
+echo "or run the following command to apply changes in current session:"
+echo "    newgrp docker"
+echo "============================================================"
