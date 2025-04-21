@@ -32,10 +32,28 @@ echo "Cleaning up existing containers..."
 sudo docker stop focusflow-app || true
 sudo docker rm focusflow-app || true
 
-# Pull and run the FocusFlow container
-echo "Pulling and running FocusFlow container..."
+# Pull the FocusFlow container
+echo "Pulling FocusFlow container..."
 sudo docker pull mubaraklouis/focusflow-cms-service:0.0.0
-sudo docker run -d -p 8000:8000 --name focusflow-app mubaraklouis/focusflow-cms-service:0.0.0
+
+# Run with interactive console to see any issues
+echo "Running FocusFlow container with extended options..."
+sudo docker run --name focusflow-app \
+  -p 8000:8000 \
+  -e "PORT=8000" \
+  --restart unless-stopped \
+  -d mubaraklouis/focusflow-cms-service:0.0.0
+
+# Check if container is running
+echo "Checking container status..."
+sudo docker ps
+echo "If no container is listed above, checking for failed containers..."
+sudo docker ps -a
+
+# Check container logs if it exists
+echo "Checking container logs..."
+sudo docker logs focusflow-app || echo "No logs available"
 
 echo "Docker installation and container deployment completed successfully!"
-echo "The FocusFlow container is now running on port 8000"
+echo "The FocusFlow container should be running on port 8000"
+echo "If you don't see the container in 'docker ps', check the logs above for errors"
