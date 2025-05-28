@@ -51,7 +51,7 @@ sudo docker image prune -f
 
 # Pull the FocusFlow container
 echo "Pulling FocusFlow container..."
-sudo docker pull mubaraklouis/focusflow:1.3.4
+sudo docker pull mubaraklouis/focusflow:1.3.5
 
 # Ask user if they want to run in debug mode
 echo ""
