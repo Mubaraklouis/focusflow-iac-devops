@@ -62,16 +62,16 @@ if [ "$debug_mode" = "y" ]; then
   # Run container with interactive shell for debugging
   echo "Starting container in debug mode with interactive shell..."
   sudo docker run --name focusflow-app \
-    -p 3000:3000 \
-    -e "PORT=3000" \
+    -p 8000:8000 \
+    -e "PORT=8000" \
     -e "DEBUG=true" \
     -it mubaraklouis/missservice:0.0.8 /bin/sh
 else
   # Run with standard configuration but with more environment variables
   echo "Running FocusFlow container with standard configuration..."
   sudo docker run --name focusflow-app \
-    -p 3000:3000 \
-    -e "PORT=3000" \
+    -p 8000:8000 \
+    -e "PORT=8000" \
     -e "NODE_ENV=production" \
     -e "DEBUG=true" \
     --restart unless-stopped \
