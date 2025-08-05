@@ -10,7 +10,7 @@ sudo systemctl stop nginx
 # Remove default Nginx config
 sudo rm /etc/nginx/sites-enabled/default
 
-# Create a new Nginx reverse proxy config
+# Create a new Nginx reœœverse proxy config
 sudo bash -c 'cat > /etc/nginx/sites-available/reverse_proxy <<EOF
 server {
     listen 80;
