@@ -16,7 +16,7 @@ fi
 # Set database and user parameters
 DB_NAME="focusflow"
 DB_USER="mubarak"
-DB_USER_PASSWORD="secure_password_here"  # Change this to a strong password
+DB_USER_PASSWORD="kuallouis"  # Change this to a strong password
 
 # Detect the OS distribution
 if [ -f /etc/os-release ]; then
