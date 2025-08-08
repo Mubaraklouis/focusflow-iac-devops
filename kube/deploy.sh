@@ -51,7 +51,7 @@ sudo docker image prune -f
 
 # Pull the FocusFlow container
 echo "Pulling FocusFlow container..."
-sudo docker pull mubaraklouis/focusflow:1.7.0
+sudo docker pull mubaraklouis/focusflow:1.7.3
 
 # Ask user if they wan6.0o run in debug mode
 echo ""
@@ -75,7 +75,7 @@ else
     -e "NODE_ENV=production" \
     -e "DEBUG=true" \
     --restart unless-stopped \
-    -d mubaraklouis/focusflow:1.7.0
+    -d mubaraklouis/focusflow:1.7.3
 
   # Check if container is running
   echo "Checking container status..."
