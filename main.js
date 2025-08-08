@@ -17,4 +17,5 @@ readline.question('Please enter your name : ', input => {
 });
  
 }
+DB_HOST=focusflow.cluster-c1aoiuwegh5u.eu-north-1.rds.amazonaws.com
 main();
