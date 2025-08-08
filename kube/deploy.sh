@@ -65,7 +65,7 @@ if [ "$debug_mode" = "y" ]; then
     -p 8000:8000 \
     -e "PORT=8000" \
     -e "DEBUG=true" \
-    -it mubaraklouis/focusflow:1.7.2 /bin/sh
+    -it mubaraklouis/focusflow:1.7.3 /bin/sh
 else
   # Run with standard configuration but with more environment variables
   echo "Running FocusFlow container with standard configuration..."
@@ -99,7 +99,7 @@ echo "Docker installation and container deployment completed!"
 echo ""
 echo "Troubleshooting tips if container keeps restarting:"
 echo "1. Check logs for specific error messages: sudo docker logs focusflow-app"
-echo "2. Try running with interactive shell: sudo docker run -it --rm mubaraklouis/focusflow:1.7.2 /bin/sh"
+echo "2. Try running with interactive shell: sudo docker run -it --rm mubaraklouis/focusflow:1.7.3 /bin/sh"
 echo "3. Check if required environment variables are set"
 echo "4. Verify the container's entrypoint script is executable"
 echo ""
